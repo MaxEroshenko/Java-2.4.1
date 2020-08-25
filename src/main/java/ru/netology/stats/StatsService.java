@@ -16,15 +16,15 @@ public class StatsService {
         int monthMin = minimumSales(proceeds);
         System.out.println("Месяц с минимальными продажами: " + monthMin + ";");
 
-        int OverAverage = SalesBelowAverage(proceeds);
-        System.out.println("Количество месяцев с продажами выше среднего: " + OverAverage + ";");
+        int overAverage = salesBelowAverage(proceeds);
+        System.out.println("Количество месяцев с продажами выше среднего: " + overAverage + ";");
 
-        int UnderAverage = SalesAboveAverage(proceeds);
-        System.out.println("Количество месяцев с продажами ниже среднего: " + UnderAverage + ";");
+        int underAverage = salesAboveAverage(proceeds);
+        System.out.println("Количество месяцев с продажами ниже среднего: " + underAverage + ";");
     }
 
+
     public static int allSales(int[] proceeds) {
-        // считаем сумму всех продаж
         int sum = 0;
         for (int proceed : proceeds) {
             sum += proceed;
@@ -38,7 +38,6 @@ public class StatsService {
     }
 
     public static int peakSales(int[] proceeds) {
-        // выводим месяц, в который была максимальная продажа
         int proceedsMax = proceeds[0];
         int month = 0;
         int monthMax = 1;
@@ -53,7 +52,6 @@ public class StatsService {
     }
 
     public static int minimumSales(int[] proceeds) {
-        // выводим месяц, в который была минимальная продажа
         int proceedsMin = proceeds[0];
         int month = 0;
         int monthMin = 1;
@@ -67,29 +65,29 @@ public class StatsService {
         return monthMin;
     }
 
-    public static int SalesBelowAverage(int[] proceeds) {
+    public static int salesBelowAverage(int[] proceeds) {
         int proceedsAverage = averageSales(proceeds);
         int count = 0;
-        int OverAverage = 0;
+        int overAverage = 0;
         for (int proceed : proceeds) {
             if (proceedsAverage < proceed) {
                 count++;
-                OverAverage = count;
+                overAverage = count;
             }
         }
-        return OverAverage;
+        return overAverage;
     }
 
-    public static int SalesAboveAverage(int[] proceeds) {
+    public static int salesAboveAverage(int[] proceeds) {
         int proceedsAverage = averageSales(proceeds);
         int count = 0;
-        int UnderAverage = 0;
+        int underAverage = 0;
         for (int proceed : proceeds) {
             if (proceedsAverage > proceed) {
                 count++;
-                UnderAverage = count;
+                underAverage = count;
             }
         }
-        return UnderAverage;
+        return underAverage;
     }
 }
